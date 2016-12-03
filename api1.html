@@ -4,10 +4,11 @@
   crossorigin="anonymous"></script>
 
 <script type="text/javascript">
+var url = "https://zuw-api.travelport.com:443/connect/AirSearch/offers"; 
 var settings = {
   "async": true,
   "crossDomain": true,
-  "url": "https://zuw-api.travelport.com:443/connect/AirSearch/offers",
+  "url": url,
   "method": "POST",
   "headers": {
     "accept": "application/json",
@@ -15,8 +16,8 @@ var settings = {
     "accept-version": "2",
     "authorization": "Basic VW5pdmVyc2FsIEFQSS91QVBJNTQ3NDI2MzYzMS0zMDkzMjdhNzp0PThKM2VGIXg/",
     "content-version": "3",
-    "cache-control": "no-cache",
-    "Authorization" : "Basic VW5pdmVyc2FsIEFQSS91QVBJNTQ3NDI2MzYzMS0zMDkzMjdhNzp0PThKM2VGIXg/"
+    "cache-control": "no-cache"
+
   },
   "processData": false,
   "data": "{\r\n  \"OffersSearchQuery\" : {\r\n    \"@type\" : \"OffersSearchQuery\",\r\n    \"maxNumberOfOffersToReturn\" : 100,\r\n    \"PassengerCriteria\" : [ {\r\n      \"value\" : \"ADT\",\r\n      \"number\" : 1\r\n    } ],\r\n    \"SearchCriteriaSegment\" : [ {\r\n      \"@type\" : \"SearchCriteriaSegment\",\r\n      \"From\" : {\r\n      \t\"value\" : \"DEN\"\r\n      },\r\n      \"departureDate\" : \"2017-02-04\",\r\n      \"To\" : {\r\n      \t\"value\" : \"ORD\"\r\n      }\r\n    }],\r\n    \"PseudoCityInfo\" : {\r\n      \"value\" : \"CV3\"\r\n    }\r\n  }\r\n}"
