@@ -1,0 +1,54 @@
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+var data = JSON.stringify({
+  "OffersSearchQuery": {
+    "@type": "OffersSearchQuery",
+    "maxNumberOfOffersToReturn": 100,
+    "PassengerCriteria": [
+      {
+        "value": "ADT",
+        "number": 1
+      }
+    ],
+    "SearchCriteriaSegment": [
+      {
+        "@type": "SearchCriteriaSegment",
+        "From": {
+          "value": "DEN"
+        },
+        "departureDate": "2017-02-04",
+        "To": {
+          "value": "ORD"
+        }
+      }
+    ],
+    "PseudoCityInfo": {
+      "value": "CV3"
+    }
+  }
+});
+
+var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === 4) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("POST", "https://zuw-api.travelport.com:443/connect/AirSearch/offers");
+xhr.setRequestHeader("accept", "application/json");
+xhr.setRequestHeader("content-type", "application/json");
+xhr.setRequestHeader("accept-version", "2");
+xhr.setRequestHeader("authorization", "Basic VW5pdmVyc2FsIEFQSS91QVBJNTQ3NDI2MzYzMS0zMDkzMjdhNzp0PThKM2VGIXg/");
+xhr.setRequestHeader("content-version", "3");
+xhr.setRequestHeader("cache-control", "no-cache");
+xhr.setRequestHeader("postman-token", "4662528e-e0f1-cac8-a492-3c50d1000b0d");
+
+xhr.send(data);
+</script>
