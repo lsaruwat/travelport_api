@@ -1,0 +1,100 @@
+<form id="api1">
+  <input type="button" id="submitButton" value="Submit"/>
+</form>
+
+
+<script type="text/javascript">
+
+
+class HttpRequester{
+
+  constructor(){
+
+  }
+
+  apiCall (url) {
+    fetch(urlBase, {
+      method: 'post',
+      body: oneWay}).then(
+          (response) => response.json()
+        ).then(
+          (respObj) => {
+            this.domUpdater(respObj);
+          }
+        ).catch(
+          (err) => console.error(err.message, err)
+        )
+  }
+
+  domUpdater(respObj){
+    let textArea = document.getElementById("text-area");
+    textArea.innerHTML += "<h1>Response Offers  " + respObj.Offers + "</h1>"; 
+  }
+
+}
+
+
+let urlBase = "https://zuw-api.travelport.com:443/connect/AirSearch/offers";
+let oneWay ={
+  "OffersSearchQuery" : {
+    "@type" : "OffersSearchQuery",
+    "maxNumberOfOffersToReturn" : 100,
+    "PassengerCriteria" : [ {
+      "value" : "ADT",
+      "number" : 1
+    } ],
+    "SearchCriteriaSegment" : [ {
+      "@type" : "SearchCriteriaSegment",
+      "From" : {
+        "value" : "DEN"
+      },
+      "departureDate" : "2017-02-04",
+      "To" : {
+        "value" : "ORD"
+      }
+    }],
+    "PseudoCityInfo" : {
+      "value" : "CV3"
+    }
+  }
+}
+
+
+
+window.addEventListener("load",start);
+
+
+function start(){
+  
+  let form1 = document.getElementById("api1");
+  let submit1 = document.getElementById("submitButton");
+
+  submit1.addEventListener("click",submitForm);
+
+
+}
+
+function serialize(obj) {
+  let str = [];
+  for(let p in obj)
+    if (obj.hasOwnProperty(p)) {
+      str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+    }
+  return str.join("&");
+}
+
+
+function submitForm(){
+  let url = urlBase;
+  
+  let url2 = serialize(oneWay);
+  console.log(url2);
+
+  fetch(urlBase, {
+    method: 'post',
+    body: oneWay
+});
+
+
+}
+</script>
